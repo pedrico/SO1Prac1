@@ -68,17 +68,17 @@ function totales()
           input: fs.createReadStream('informacion.txt')
         });
 
-
+        var parent2 = parent;
         //leo cada linea
         rl.on('line', function (line) {
           var esnum = isNumber(line)
           if(esnum){
-            parent.cantidadProcesos ++;
-            console.log('Linea del archivo:', parent.cantidadProcesos);
+            parent2.cantidadProcesos ++;
+            console.log('Linea del archivo:', parent2.cantidadProcesos);
             console.log('Linea del archivo:', line);
           }
         });
-        console.log('Total Procesos', parent.cantidadProcesos);
+        console.log('Total Procesos', parent2.cantidadProcesos);
     }
   });
   return cantidadProcesos;
