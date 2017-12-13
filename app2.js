@@ -77,10 +77,10 @@ function totales()
 
             //console.log('Linea del archivo:', line);
           }
-        }.bind(this));
+        });
         console.log('Total Procesos', this.cantidadProcesos);
     }
-  }.bind(this));
+  });
   return cantidadProcesos;
 }
 
