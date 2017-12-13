@@ -76,6 +76,7 @@ try {
                 const rl = readline.createInterface({
                   input: fs.createReadStream(directorio)
                 });
+                  console.log('Directorio: ', directorio);
                 rl.on('line', function(linea){
                   var spliteada = linea.split(" ")
                   var tercera = spliteada[2];
