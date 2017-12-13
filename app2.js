@@ -76,7 +76,7 @@ try {
               fs.stat(varDirectorio, function(err, stats){
 
                 console.log('Directorio: ', varDirectorio);
-                if(!(err && err.errno ===34)){
+                if(!(err)){
                 const rl = readline.createInterface({
                   input: fs.createReadStream(varDirectorio)
                 });
