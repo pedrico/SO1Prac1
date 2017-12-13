@@ -50,11 +50,12 @@ io.on('connection', function(client) {
                   console.log('Primer nivel:', cantidad);
                   //leo cada linea
                   rl.on('line', funCallback);
+                  client.emit('contador', this.cantidadProcesos );
 
                 }
 
               )
-              client.emit('contador', cantidadProcesosG );
+
           }
     ,5000);
 
@@ -89,7 +90,6 @@ function crearArchivo(funLeerArchivo)
       }.bind(this));
     }
   }.bind(this));
-  cantidadProcesosG = this.cantidadProcesos;
 }
 
 function leerArchivo(cantidad, funCallback){
