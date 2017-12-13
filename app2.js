@@ -3,6 +3,7 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var exec = require('child_process').exec,child, child1;
+var fs=require('fs');
 var idProcesos = [];
 var estadoProcesos = [];
 
@@ -66,7 +67,7 @@ io.on('connection', function(client) {
                 }
               )
           }
-    ,1000);
+    ,3000);
 
 });
 
@@ -105,12 +106,16 @@ function crearArchivo(funLeerArchivo)
 function totalEstados(){
 
   for (i = 0; i < idProcesos.length; i++) {
-    child = exec("awk '{print $3}' /proc/"+idProcesos[i]+"/stat",
-    function (error, stdout, stderr) {
-      if (error !== null) {
-        console.log('exec error: ' + error);
-      } else {
-        estadoProcesos.push(stdout);
+    fs.exists("/proc/"+idProcesos[i]+"/stat",function(exists){
+      if(exists){        
+        child = exec("awk '{print $3}' /proc/"+idProcesos[i]+"/stat",
+        function (error, stdout, stderr) {
+          if (error !== null) {
+            console.log('exec error: ' + error);
+          } else {
+            estadoProcesos.push(stdout);
+          }
+        });
       }
     });
   }
