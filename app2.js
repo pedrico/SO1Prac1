@@ -40,16 +40,16 @@ io.on('connection', function(client) {
               // var resTotales = totales();
               crearArchivo(
                 //leerArchivo
-                function (cantidad, funCallback){
+                function (funCallback){
                   const readline = require('readline');
                   const fs = require('fs');
                   const rl = readline.createInterface({
                     input: fs.createReadStream('informacion.txt')
                   });
 
-                  console.log('Primer nivel:', cantidad);
+                  console.log('Primer nivel:', this.cantidadProcesos);
                   //leo cada linea
-                  rl.on('line', funCallback);
+                  rl.on('line', funCallback.bind(this) );
                   rl.on('close', function(data){
                     console.log('Total----------------------:', this.cantidadProcesos);
                   }.bind(this))
@@ -80,10 +80,10 @@ function crearArchivo(funLeerArchivo)
       console.log('exec 1 error: ' + error);
     } else {
       //Llamar a leerArchivo
-      funLeerArchivo(this.cantidadProcesos,
+      funLeerArchivo(
         //Sumar Procesos
         function (line) {
-        var esnum = isNumber(line)        
+        var esnum = isNumber(line)
         if(esnum){
           this.cantidadProcesos ++;
         }
