@@ -95,7 +95,7 @@ try {
                       }else if (0 == tercera.trim().localeCompare("Z")) {
                         cantidadzombies ++;
                       }
-                      estadoProcesos.push(stdout);
+                      estadoProcesos.push(tercera);
 
 
 
