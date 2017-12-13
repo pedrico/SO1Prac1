@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var exec = require('child_process').exec,child, child1;
-
+var cantidadProcesos =0;
 
 
 app.use(express.static(__dirname + '/node_modules'));
@@ -37,7 +37,7 @@ io.on('connection', function(client) {
     setInterval(function(){
               contador = aumentar(contador);
               // var resTotales = totales();
-              var cantidadProcesos = totales();
+              totales();
               client.emit('contador', cantidadProcesos );
             }
     ,5000);
@@ -81,7 +81,7 @@ function totales()
         }.bind(this));
     }
   }.bind(this));
-  return this.cantidadProcesos;
+  cantidadProcesos = this.cantidadProcesos;
 }
 
 
