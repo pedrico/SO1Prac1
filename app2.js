@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var exec = require('child_process').exec,child, child1;
-var cantidadProcesosG =0;
+var idProcesos = [-1];
 
 
 app.use(express.static(__dirname + '/node_modules'));
@@ -51,8 +51,9 @@ io.on('connection', function(client) {
                   //leo cada linea
                   rl.on('line', funCallback.bind(this) );
                   rl.on('close', function(data){
+
                     console.log('Total----------------------:', this.cantidadProcesos);
-                    client.emit('contador', this.cantidadProcesos);
+                    client.emit('contador', this.cantidadProcesos + ' ' +idProcesos.length);
                   }.bind(this))
                 }
               )
@@ -84,11 +85,13 @@ function crearArchivo(funLeerArchivo)
         var esnum = isNumber(line)
         if(esnum){
           this.cantidadProcesos ++;
+          idProcesos.push(line);
         }
       }.bind(this));
     }
   }.bind(this));
 }
+
 
 
 
