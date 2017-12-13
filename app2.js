@@ -52,7 +52,7 @@ io.on('connection', function(client) {
                   rl.on('line', funCallback.bind(this) );
                   rl.on('close', function(data){
                     console.log('Total----------------------:', this.cantidadProcesos);
-                    client.emit('contador', data);
+                    client.emit('contador', this.cantidadProcesos);
                   }.bind(this))
 
                 }
