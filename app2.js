@@ -57,7 +57,7 @@ io.on('connection', function(client) {
                     console.log('Total----------------------:', this.cantidadProcesos);
                     client.emit('contador', this.cantidadProcesos + ' ' +idProcesos.length);
                     //----------------------------------------------Calculo Estados
-                    estadoProcesos=[];
+
 
                     for (j = 0; j < idProcesos.length; j++) {
                       console.log('Valor j 2: ', j);
@@ -70,12 +70,13 @@ io.on('connection', function(client) {
                           estadoProcesos.push(stdout);
                         }
                       });
-                    }                    
+                    }
                     var estados = "";
                     for (i = 0; i < estadoProcesos.length; i++) {
                       estados += estadoProcesos[i] + "-";
                     }
                     client.emit('contador', estadoProcesos.length +" - " + estados + " - ");
+                    estadoProcesos=[];
                   }.bind(this))
                 }
               )
