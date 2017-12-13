@@ -36,6 +36,7 @@ io.on('connection', function(client) {
     setInterval(function(){
               contador = aumentar(contador);
               // var resTotales = totales();
+              totales();
               client.emit('contador', contador);
             }
     ,10000);
