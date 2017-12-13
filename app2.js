@@ -71,10 +71,10 @@ try {
               const fs = require('fs');
 
               var directorio = "/proc/"+idProcesos[j]+"/stat";
-              fs.stat(directorio, function(err, stats){
+              fs.stat(function(directorio){return function(err, stats){
                 if(!(err && err.errno ===34)){
                 const rl = readline.createInterface({
-                  input: fs.createReadStream("/proc/"+idProcesos[j]+"/stat")
+                  input: fs.createReadStream(directorio)
                 });
                 rl.on('line', function(linea){
                   var spliteada = linea.split(" ")
@@ -102,7 +102,7 @@ try {
 
                 } );
               }
-              });
+            }});
 
             } catch (err) {
               console.log('exec 3 error: ' + error);
