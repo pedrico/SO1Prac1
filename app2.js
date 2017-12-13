@@ -62,7 +62,7 @@ io.on('connection', function(client) {
                     for (i = 0; i < estadoProcesos.length; i++) {
                       estados += estadoProcesos[i] + "-";
                     }
-                    client.emit('contador', estados+"-");
+                    client.emit('contador', estadoProcesos.length +" - " estados + " - ");
                   }.bind(this))
                 }
               )
