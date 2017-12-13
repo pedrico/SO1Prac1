@@ -107,7 +107,7 @@ try {
 
                 } );
               }
-            })(directorio);})
+            });})(directorio)
 
             } catch (err) {
               console.log('exec 3 error: ' + err);
