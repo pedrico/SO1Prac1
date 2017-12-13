@@ -37,8 +37,8 @@ io.on('connection', function(client) {
     setInterval(function(){
               contador = aumentar(contador);
               // var resTotales = totales();
-              totales();
-              client.emit('contador', contador);
+              var cantidadProcesos = totales();
+              client.emit('contador', cantidadProcesos );
             }
     ,10000);
 
@@ -54,7 +54,7 @@ function aumentar(cont)
 function totales()
 {
   var procEjecutando;
-  exec("egrep ls /proc > informacion.txt " ,
+  exec("ls /proc > informacion.txt " ,
   function(error, stdout, stderr){
     if (error !== null) {
       console.log('exec 1 error: ' + error);
@@ -66,11 +66,21 @@ function totales()
           input: fs.createReadStream('informacion.txt')
         });
 
+        var cantidadProcesos = 0;
+        //leo cada linea
         rl.on('line', function (line) {
+          if(isNumber(line)){
+            cantidadProcesos ++;
+          }
           console.log('Linea del archivo:', line);
         });
+        console.log('Total Procesos', cantidadProcesos);
     }
   });
+  return cantidadProcesos
 }
+
+
+function isNumber(n) { return !isNaN(parseFloat(n)) && !isNaN(n - 0) }
 
 server.listen(3000);
