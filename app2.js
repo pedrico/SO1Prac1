@@ -54,11 +54,8 @@ io.on('connection', function(client) {
                     console.log('Total----------------------:', this.cantidadProcesos);
                     client.emit('contador', this.cantidadProcesos);
                   }.bind(this))
-
                 }
-
               )
-
           }
     ,1000);
 
@@ -91,31 +88,6 @@ function crearArchivo(funLeerArchivo)
       }.bind(this));
     }
   }.bind(this));
-}
-
-function leerArchivo(cantidad, funCallback){
-  const readline = require('readline');
-  const fs = require('fs');
-  const rl = readline.createInterface({
-    input: fs.createReadStream('informacion.txt')
-  });
-
-  console.log('Primer nivel:', cantidad);
-  //leo cada linea
-  rl.on('line', funCallback);
-
-}
-
-function inter (line) {
-  var esnum = isNumber(line)
-  console.log('Segundo nivel:', this.cantidadProcesos);
-  if(esnum){
-    cantidadProcesos ++;
-  }
-}
-
-function resultTotalProcesos(totalProcesos){
-    console.log('Total Procesos', this.cantidadProcesos);
 }
 
 
