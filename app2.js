@@ -70,7 +70,7 @@ io.on('connection', function(client) {
                           console.log('exec error: ' + error);
                         } else {
                           //console.log('Leyendo estado: ', idProcesos[j]);
-                          if (stdout === "S") {
+                          if (0 == stdout.localCompare("S")) {
                             cantidadsuspendidos ++;
                           }
                           estadoProcesos.push(stdout);
