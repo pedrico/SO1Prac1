@@ -70,10 +70,10 @@ io.on('connection', function(client) {
                           console.log('exec error: ' + error);
                         } else {
                           //console.log('Leyendo estado: ', idProcesos[j]);
-                          var comparacion = stdout.localeCompare("S")
-                          console.log('Local compare: ' + comparacion);
-                          console.log('Local compare: ' + stdout.trim()+ "-");
-                          console.log('Local compare: ' + "S");
+                          // var comparacion = stdout.localeCompare("S")
+                          // console.log('Local compare: ' + comparacion);
+                          // console.log('Local compare: ' + stdout.trim()+ "-");
+                          // console.log('Local compare: ' + "S");
                           if (0 == stdout.trim().localeCompare("S")) {
                             cantidadsuspendidos ++;
                           }
