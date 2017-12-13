@@ -69,33 +69,40 @@ io.on('connection', function(client) {
 try {
               const readline = require('readline');
               const fs = require('fs');
-              const rl = readline.createInterface({
-                input: fs.createReadStream("/proc/"+idProcesos[j]+"/stat")
+
+              var directorio = "/proc/"+idProcesos[j]+"/stat";
+              fs.stat(directorio, function(err, stats){
+                if(!(err && err.errno ===34)){
+                const rl = readline.createInterface({
+                  input: fs.createReadStream(directorio)
+                });
+                rl.on('line', function(linea){
+                  var spliteada = linea.split(" ")
+                  var tercera = spliteada[2];
+
+
+                      //console.log('Leyendo estado: ', idProcesos[j]);
+                      // var comparacion = stdout.localeCompare("S")
+                      // console.log('Local compare: ' + comparacion);
+                      // console.log('Local compare: ' + stdout.trim()+ "-");
+                      // console.log('Local compare: ' + "S");
+                      if (0 == tercera.trim().localeCompare("S")) {
+                        cantidadsuspendidos ++;
+                      }else if (0 == tercera.trim().localeCompare("R")) {
+                        cantidadejecucion ++;
+                      }else if (0 == tercera.trim().localeCompare("T")) {
+                        cantidaddetenidos ++;
+                      }else if (0 == tercera.trim().localeCompare("Z")) {
+                        cantidadzombies ++;
+                      }
+                      estadoProcesos.push(stdout);
+
+
+
+                } );
+              }
               });
-              rl.on('line', function(linea){
-                var spliteada = linea.split(" ")
-                var tercera = spliteada[2];
 
-
-                    //console.log('Leyendo estado: ', idProcesos[j]);
-                    // var comparacion = stdout.localeCompare("S")
-                    // console.log('Local compare: ' + comparacion);
-                    // console.log('Local compare: ' + stdout.trim()+ "-");
-                    // console.log('Local compare: ' + "S");
-                    if (0 == tercera.trim().localeCompare("S")) {
-                      cantidadsuspendidos ++;
-                    }else if (0 == tercera.trim().localeCompare("R")) {
-                      cantidadejecucion ++;
-                    }else if (0 == tercera.trim().localeCompare("T")) {
-                      cantidaddetenidos ++;
-                    }else if (0 == tercera.trim().localeCompare("Z")) {
-                      cantidadzombies ++;
-                    }
-                    estadoProcesos.push(stdout);
-
-
-
-              } );
             } catch (err) {
               console.log('exec 3 error: ' + error);
             }
