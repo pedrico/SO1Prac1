@@ -72,7 +72,7 @@ io.on('connection', function(client) {
                           //console.log('Leyendo estado: ', idProcesos[j]);
                           var comparacion = stdout.localeCompare("S")
                           console.log('Local compare: ' + comparacion);
-                          console.log('Local compare: ' + stdout);
+                          console.log('Local compare: ' + stdout+ "-");
                           console.log('Local compare: ' + "S");
                           if (0 == stdout.localeCompare("S")) {
                             cantidadsuspendidos ++;
