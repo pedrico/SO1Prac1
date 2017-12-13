@@ -60,7 +60,7 @@ io.on('connection', function(client) {
               )
 
           }
-    ,5000);
+    ,1000);
 
 });
 
