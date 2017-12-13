@@ -54,7 +54,7 @@ function aumentar(cont)
 
 function totales()
 {
-  this.cantidadProcesos = 0;
+  this.cantidadProcesos = 123;
   exec("ls /proc > informacion.txt " ,
   function(error, stdout, stderr){
     if (error !== null) {
@@ -78,10 +78,9 @@ function totales()
             //console.log('Linea del archivo:', line);
           }
           console.log('Total Procesos', this.cantidadProcesos);
-        });
-
+        }.bind(this));
     }
-  });
+  }.bind(this));
   return cantidadProcesos;
 }
 
