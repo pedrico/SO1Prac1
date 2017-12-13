@@ -104,25 +104,25 @@ function crearArchivo(funLeerArchivo)
 
 function totalEstados(){
   estadoProcesos= [];
-  for (i = 0; i < idProcesos.length; i++) {
-    fs.open("/proc/"+idProcesos[i]+"/stat",'r',function(err,fd){
+  for (j = 0; j < idProcesos.length; j++) {
+    fs.open("/proc/"+idProcesos[j]+"/stat",'r',function(err,fd){
         if (err && err.code=='ENOENT') {
-          console.log('Archivo no existe: ', idProcesos[i]);
+          console.log('Archivo no existe: ', idProcesos[this.j]);
         }
         else{
 
-            child = exec("awk '{print $3}' /proc/"+idProcesos[i]+"/stat",
+            child = exec("awk '{print $3}' /proc/"+idProcesos[this.j]+"/stat",
             function (error, stdout, stderr) {
               if (error !== null) {
                 console.log('exec error: ' + error);
               } else {
-                console.log('Leyendo estado: ', idProcesos[i]);
+                console.log('Leyendo estado: ', idProcesos[this.j]);
                 estadoProcesos.push(stdout);
               }
-            });
+            }.bind(this));
 
         }
-    });
+    }.bind(this));
 
 
 
