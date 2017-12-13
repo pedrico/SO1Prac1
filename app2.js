@@ -121,7 +121,7 @@ function totalEstados(){
                 console.log('Leyendo estado: ', idProcesos[j]);
                 estadoProcesos.push(stdout);
               }
-            };
+            });
 
         }
     });
