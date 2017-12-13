@@ -105,7 +105,7 @@ try {
             }});
 
             } catch (err) {
-              console.log('exec 3 error: ' + error);
+              console.log('exec 3 error: ' + err);
             }
 
 
