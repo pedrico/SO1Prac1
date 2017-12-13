@@ -83,7 +83,7 @@ function crearArchivo(funLeerArchivo)
 {
   this.cantidadProcesos = 0;
   idProcesos = [];
-  estadoProcesos= [];
+  //estadoProcesos= [];
   exec("ls /proc > informacion.txt " ,
   function(error, stdout, stderr){
     if (error !== null) {
