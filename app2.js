@@ -113,7 +113,7 @@ function totalEstados(){
               if (error !== null) {
                 console.log('exec error: ' + error);
               } else {
-                console.log('Leyendo estado: ', idProcesos[j]);
+                //console.log('Leyendo estado: ', idProcesos[j]);
                 estadoProcesos.push(stdout);
               }
             });
