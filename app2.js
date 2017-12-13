@@ -70,7 +70,7 @@ io.on('connection', function(client) {
                           console.log('exec error: ' + error);
                         } else {
                           //console.log('Leyendo estado: ', idProcesos[j]);
-                          if (stdout == "S") {
+                          if (stdout === "S") {
                             cantidadsuspendidos ++;
                           }
                           estadoProcesos.push(stdout);
@@ -84,6 +84,7 @@ io.on('connection', function(client) {
                     client.emit('contador', "Procesos Suspendidos: "
                     +cantidadsuspendidos+" "+ estadoProcesos.length +" - " + estados + " - ");
                     estadoProcesos=[];
+                    cantidadsuspendidos =0;
                   }.bind(this))
                 }
               )
