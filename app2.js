@@ -49,7 +49,7 @@ io.on('connection', function(client) {
 
                   console.log('Primer nivel:', this.cantidadProcesos);
                   //leo cada linea
-                  rl.on('line', funCallback.bind(this) );
+                  rl.on('line', funCallback );
                   rl.on('close', function(data){
                     console.log('Total----------------------:', this.cantidadProcesos);
                   }.bind(this))
