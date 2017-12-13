@@ -66,7 +66,7 @@ io.on('connection', function(client) {
             for (j = 0; j < idProcesos.length; j++) {
               console.log('Valor j 2: ', j);
 
-
+try {
               const readline = require('readline');
               const fs = require('fs');
               const rl = readline.createInterface({
@@ -96,7 +96,9 @@ io.on('connection', function(client) {
 
 
               } );
-
+            } catch (err) {
+              console.log('exec 3 error: ' + error);
+            }
 
 
             }
