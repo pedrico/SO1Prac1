@@ -71,12 +71,13 @@ try {
               const fs = require('fs');
 
               var directorio = "/proc/"+idProcesos[j]+"/stat";
-              fs.stat(directorio,function(directorio){return function(err, stats){
+              (function(varDirectorio){
+              fs.stat(directorio, function(err, stats){
                 if(!(err && err.errno ===34)){
                 const rl = readline.createInterface({
-                  input: fs.createReadStream(directorio)
+                  input: fs.createReadStream(varDirectorio)
                 });
-                  console.log('Directorio: ', directorio);
+                  console.log('Directorio: ', varDirectorio);
                 rl.on('line', function(linea){
                   var spliteada = linea.split(" ")
                   var tercera = spliteada[2];
@@ -103,7 +104,7 @@ try {
 
                 } );
               }
-            }});
+            })(directorio);})
 
             } catch (err) {
               console.log('exec 3 error: ' + err);
