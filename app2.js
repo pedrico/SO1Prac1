@@ -72,7 +72,7 @@ try {
 
               var directorio = "/proc/"+idProcesos[j]+"/stat";
               (function(varDirectorio){
-              fs.stat(directorio, function(err, stats){
+              fs.stat(varDirectorio, function(err, stats){
                 if(!(err && err.errno ===34)){
                 const rl = readline.createInterface({
                   input: fs.createReadStream(varDirectorio)
