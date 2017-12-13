@@ -5,7 +5,7 @@ var io = require('socket.io')(server);
 var exec = require('child_process').exec,child, child1;
 var fs=require('fs');
 var idProcesos = [];
-var estadoProcesos = [];
+global.estadoProcesos = [];
 
 
 app.use(express.static(__dirname + '/node_modules'));
