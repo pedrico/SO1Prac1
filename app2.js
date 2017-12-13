@@ -106,13 +106,13 @@ function totalEstados(){
   estadoProcesos= [];
   var j = 0;
   for (j = 0; j < idProcesos.length; j++) {
-    console.log('Valor j 1: ', j]);
+    console.log('Valor j 1: ', j);
     fs.open("/proc/"+idProcesos[j]+"/stat",'r',function(err,fd){
         if (err && err.code=='ENOENT') {
           console.log('Archivo no existe: ', idProcesos[this.j]);
         }
         else{
-          console.log('Valor j 2: ', j]);
+          console.log('Valor j 2: ', j);
             child = exec("awk '{print $3}' /proc/"+idProcesos[j]+"/stat",
             function (error, stdout, stderr) {
               if (error !== null) {
