@@ -125,9 +125,14 @@ try {
             +cantidadejecucion+"<br/>"+
             "Procesos Detenidos: "
             +cantidaddetenidos+"<br/>"+
+            "Procesos Zombies: "
+            +cantidadzombies+"<br/>"+
             estadoProcesos.length +" - " + estados + " - ");
             estadoProcesos=[];
             cantidadsuspendidos =0;
+            cantidadejecucion= 0;
+            cantidaddetenidos = 0;
+            cantidadzombies=0;
           }.bind(this))
         }
       )
