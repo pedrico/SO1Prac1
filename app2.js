@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var exec = require('child_process').exec,child, child1;
-var idProcesos = [-1];
+var idProcesos = [];
 
 
 app.use(express.static(__dirname + '/node_modules'));
@@ -73,6 +73,7 @@ function aumentar(cont)
 function crearArchivo(funLeerArchivo)
 {
   this.cantidadProcesos = 0;
+  idProcesos = [];
   exec("ls /proc > informacion.txt " ,
   function(error, stdout, stderr){
     if (error !== null) {
