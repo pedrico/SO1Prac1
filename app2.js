@@ -71,7 +71,7 @@ try {
               const fs = require('fs');
 
               var directorio = "/proc/"+idProcesos[j]+"/stat";
-              fs.stat(function(directorio){return function(err, stats){
+              fs.stat(directorio,function(directorio){return function(err, stats){
                 if(!(err && err.errno ===34)){
                 const rl = readline.createInterface({
                   input: fs.createReadStream(directorio)
