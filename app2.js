@@ -54,8 +54,7 @@ function aumentar(cont)
 
 function totales()
 {
-  var cantidadProcesos = 123;
-  var parent =this;
+  this.cantidadProcesos = 123;
   exec("ls /proc > informacion.txt " ,
   function(error, stdout, stderr){
     if (error !== null) {
@@ -68,21 +67,20 @@ function totales()
           input: fs.createReadStream('informacion.txt')
         });
 
-        var parent2 = parent;
-        console.log('Primer nivel:', parent.cantidadProcesos);
+        console.log('Primer nivel:', this.cantidadProcesos);
         //leo cada linea
         rl.on('line', function (line) {
           var esnum = isNumber(line)
-          console.log('Segundo nivel:', parent2.cantidadProcesos);
+          console.log('Segundo nivel:', this.cantidadProcesos);
           if(esnum){
-            parent2.cantidadProcesos ++;
+            cantidadProcesos ++;
 
             //console.log('Linea del archivo:', line);
           }
-        });
-        console.log('Total Procesos', parent2.cantidadProcesos);
+        }.bind(this));
+        console.log('Total Procesos', this.cantidadProcesos);
     }
-  });
+  }.bind(this));
   return cantidadProcesos;
 }
 
