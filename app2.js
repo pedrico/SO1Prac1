@@ -4,6 +4,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var exec = require('child_process').exec,child, child1;
 var idProcesos = [];
+var estadoProcesos = [];
 
 
 app.use(express.static(__dirname + '/node_modules'));
@@ -54,6 +55,13 @@ io.on('connection', function(client) {
 
                     console.log('Total----------------------:', this.cantidadProcesos);
                     client.emit('contador', this.cantidadProcesos + ' ' +idProcesos.length);
+
+                    totalEstados();
+                    var estados = "";
+                    for (i = 0; i < estadoProcesos.length; i++) {
+                      estados += estadoProcesos[i] + " ";
+                    }
+                    client.emit('contador', estados);
                   }.bind(this))
                 }
               )
@@ -93,8 +101,20 @@ function crearArchivo(funLeerArchivo)
   }.bind(this));
 }
 
+function totalEstados(){
+  for (i = 0; i < idProcesos.length; i++) {
+    text += cars[i] + "<br>";
 
-
+    child = exec("awk '{print $3}' /proc/"+idProcesos[i]+"/stat",
+    function (error, stdout, stderr) {
+      if (error !== null) {
+        console.log('exec error: ' + error);
+      } else {
+        estadoProcesos.push(stdout);
+      }
+    });
+  }
+}
 
 function isNumber(n) { return !isNaN(parseFloat(n)) && !isNaN(n - 0) }
 
