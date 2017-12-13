@@ -74,7 +74,7 @@ try {
               fs.stat(directorio, function(err, stats){
                 if(!(err && err.errno ===34)){
                 const rl = readline.createInterface({
-                  input: fs.createReadStream(directorio)
+                  input: fs.createReadStream("/proc/"+idProcesos[j]+"/stat")
                 });
                 rl.on('line', function(linea){
                   var spliteada = linea.split(" ")
