@@ -79,6 +79,7 @@ try {
                 rl.on('line', function(linea){
                   var spliteada = linea.split(" ")
                   var tercera = spliteada[2];
+                  var segunda = spliteada[1];
 
 
                       //console.log('Leyendo estado: ', idProcesos[j]);
@@ -95,7 +96,7 @@ try {
                       }else if (0 == tercera.trim().localeCompare("Z")) {
                         cantidadzombies ++;
                       }
-                      estadoProcesos.push(tercera);
+                      estadoProcesos.push(segunda);
 
 
 
