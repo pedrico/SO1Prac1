@@ -56,8 +56,21 @@ io.on('connection', function(client) {
 
                     console.log('Total----------------------:', this.cantidadProcesos);
                     client.emit('contador', this.cantidadProcesos + ' ' +idProcesos.length);
+                    //----------------------------------------------Calculo Estados
+                    estadoProcesos=[];
 
-                    totalEstados();
+                    for (j = 0; j < idProcesos.length; j++) {
+                      console.log('Valor j 2: ', j);
+                      child = exec("awk '{print $3}' /proc/"+idProcesos[j]+"/stat",
+                      function (error, stdout, stderr) {
+                        if (error !== null) {
+                          console.log('exec error: ' + error);
+                        } else {
+                          //console.log('Leyendo estado: ', idProcesos[j]);
+                          estadoProcesos.push(stdout);
+                        }
+                      });
+                    }                    
                     var estados = "";
                     for (i = 0; i < estadoProcesos.length; i++) {
                       estados += estadoProcesos[i] + "-";
@@ -104,24 +117,7 @@ function crearArchivo(funLeerArchivo)
 }
 
 function totalEstados(){
-  estadoProcesos=[];
 
-  for (j = 0; j < idProcesos.length; j++) {
-
-          console.log('Valor j 2: ', j);
-            child = exec("awk '{print $3}' /proc/"+idProcesos[j]+"/stat",
-            function (error, stdout, stderr) {
-              if (error !== null) {
-                console.log('exec error: ' + error);
-              } else {
-                //console.log('Leyendo estado: ', idProcesos[j]);
-                estadoProcesos.push(stdout);
-              }
-            });
-
-
-
-  }
 }
 
 function isNumber(n) { return !isNaN(parseFloat(n)) && !isNaN(n - 0) }
