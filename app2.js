@@ -71,8 +71,10 @@ try {
               const fs = require('fs');
 
               var directorio = "/proc/"+idProcesos[j]+"/stat";
+              console.log('Directorio: ', directorio);
               (function(varDirectorio){
               fs.stat(varDirectorio, function(err, stats){
+
                 console.log('Directorio: ', varDirectorio);
                 if(!(err && err.errno ===34)){
                 const rl = readline.createInterface({
