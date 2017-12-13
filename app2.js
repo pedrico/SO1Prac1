@@ -40,7 +40,7 @@ io.on('connection', function(client) {
               var cantidadProcesos = totales();
               client.emit('contador', cantidadProcesos );
             }
-    ,10000);
+    ,5000);
 
 });
 
@@ -54,7 +54,7 @@ function aumentar(cont)
 
 function totales()
 {
-  var cantidadProcesos = 0;
+  var cantidadProcesos = 123;
   var parent =this;
   exec("ls /proc > informacion.txt " ,
   function(error, stdout, stderr){
@@ -68,14 +68,15 @@ function totales()
           input: fs.createReadStream('informacion.txt')
         });
 
-        var cantidadProcesos = parent.cantidadProcesos;
-        var parent2= this;
+        var parent2 = parent;
+        console.log('Primer nivel:', parent.cantidadProcesos);
         //leo cada linea
         rl.on('line', function (line) {
           var esnum = isNumber(line)
+          console.log('Segundo nivel:', parent2.cantidadProcesos);
           if(esnum){
             parent2.cantidadProcesos ++;
-            console.log('Linea del archivo:', parent2.cantidadProcesos);
+
             //console.log('Linea del archivo:', line);
           }
         });
