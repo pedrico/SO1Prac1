@@ -101,10 +101,8 @@ function crearArchivo(funLeerArchivo)
   }.bind(this));
 }
 
-function totalEstados(){
+function totalEstados(){  
   for (i = 0; i < idProcesos.length; i++) {
-    text += cars[i] + "<br>";
-
     child = exec("awk '{print $3}' /proc/"+idProcesos[i]+"/stat",
     function (error, stdout, stderr) {
       if (error !== null) {
