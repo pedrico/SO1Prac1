@@ -81,7 +81,7 @@ function totales()
         }.bind(this));
     }
   }.bind(this));
-  return cantidadProcesos;
+  return this.cantidadProcesos;
 }
 
 
