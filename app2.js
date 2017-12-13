@@ -52,7 +52,7 @@ function aumentar(cont)
 }
 
 function totales()
-{  
+{
   var cantidadProcesos = 0;
   exec("ls /proc > informacion.txt " ,
   function(error, stdout, stderr){
@@ -69,10 +69,11 @@ function totales()
 
         //leo cada linea
         rl.on('line', function (line) {
-          if(isNumber(line)){
+          var esnum = isNumber(line)
+          if(esnum){
             cantidadProcesos ++;
+            console.log('Linea del archivo:', line);
           }
-          console.log('Linea del archivo:', line);
         });
         console.log('Total Procesos', cantidadProcesos);
     }
