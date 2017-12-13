@@ -4,7 +4,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var exec = require('child_process').exec,child, child1;
 var fs=require('fs');
-var idProcesos = [];
+global.idProcesos = [];
 global.estadoProcesos = [];
 
 
@@ -104,7 +104,7 @@ function crearArchivo(funLeerArchivo)
 }
 
 function totalEstados(){
-
+  estadoProcesos=[];
 
   for (j = 0; j < idProcesos.length; j++) {
 
