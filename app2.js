@@ -104,6 +104,7 @@ function crearArchivo(funLeerArchivo)
 
 function totalEstados(){
   estadoProcesos= [];
+  var j = 0;
   for (j = 0; j < idProcesos.length; j++) {
     fs.open("/proc/"+idProcesos[j]+"/stat",'r',function(err,fd){
         if (err && err.code=='ENOENT') {
