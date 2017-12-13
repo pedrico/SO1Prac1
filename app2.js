@@ -54,7 +54,7 @@ function aumentar(cont)
 
 function totales()
 {
-  this.cantidadProcesos = 123;
+  this.cantidadProcesos = 0;
   exec("ls /proc > informacion.txt " ,
   function(error, stdout, stderr){
     if (error !== null) {
