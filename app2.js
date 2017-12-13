@@ -76,6 +76,10 @@ io.on('connection', function(client) {
                           // console.log('Local compare: ' + "S");
                           if (0 == stdout.trim().localeCompare("S")) {
                             cantidadsuspendidos ++;
+                          }else if (0 == stdout.trim().localeCompare("R")) {
+                            cantidadejecucion ++;
+                          }else if (0 == stdout.trim().localeCompare("T")) {
+                            cantidaddetenidos ++;
                           }
                           estadoProcesos.push(stdout);
                         }
@@ -86,7 +90,12 @@ io.on('connection', function(client) {
                       estados += estadoProcesos[i] + "-";
                     }
                     client.emit('contador', "Procesos Suspendidos: "
-                    +cantidadsuspendidos+" "+ estadoProcesos.length +" - " + estados + " - ");
+                    +cantidadsuspendidos+"<br/>"+
+                    "Procesos en Ejecución: "
+                    +cantidadejecucion+"<br/>"+
+                    "Procesos Detenidos: "
+                    +cantidaddetenidos+"<br/>"+
+                     estadoProcesos.length +" - " + estados + " - ");
                     estadoProcesos=[];
                     cantidadsuspendidos =0;
                   }.bind(this))
