@@ -70,6 +70,8 @@ io.on('connection', function(client) {
                           console.log('exec error: ' + error);
                         } else {
                           //console.log('Leyendo estado: ', idProcesos[j]);
+                          var comparacion = stdout.localeCompare("S")
+                          console.log('Local compare: ' + comparacion);
                           if (0 == stdout.localeCompare("S")) {
                             cantidadsuspendidos ++;
                           }
