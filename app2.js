@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var exec = require('child_process').exec,child, child1;
-var cantidadProcesos = 0;
+
 
 
 app.use(express.static(__dirname + '/node_modules'));
@@ -37,7 +37,7 @@ io.on('connection', function(client) {
     setInterval(function(){
               contador = aumentar(contador);
               // var resTotales = totales();
-              totales();
+              var cantidadProcesos = totales();
               client.emit('contador', cantidadProcesos );
             }
     ,10000);
@@ -51,10 +51,9 @@ function aumentar(cont)
   return cont;
 }
 
-
+var cantidadProcesosG = 0;
 function totales()
 {
-  cantidadProcesos = 0;
   exec("ls /proc > informacion.txt " ,
   function(error, stdout, stderr){
     if (error !== null) {
@@ -72,14 +71,15 @@ function totales()
         rl.on('line', function (line) {
           var esnum = isNumber(line)
           if(esnum){
-            cantidadProcesos ++;
-            console.log('Linea del archivo:', cantidadProcesos);
+            cantidadProcesosG ++;
+            console.log('Linea del archivo:', cantidadProcesosG);
             console.log('Linea del archivo:', line);
           }
         });
-        console.log('Total Procesos', cantidadProcesos);
+        console.log('Total Procesos', cantidadProcesosG);
     }
   });
+  return cantidadProcesosG;
 }
 
 
