@@ -109,7 +109,7 @@ function totalEstados(){
     console.log('Valor j 1: ', j);
     fs.open("/proc/"+idProcesos[j]+"/stat",'r',function(err,fd){
         if (err && err.code=='ENOENT') {
-          console.log('Archivo no existe: ', idProcesos[this.j]);
+          console.log('Archivo no existe: ', idProcesos[j]);
         }
         else{
           console.log('Valor j 2: ', j);
@@ -118,13 +118,13 @@ function totalEstados(){
               if (error !== null) {
                 console.log('exec error: ' + error);
               } else {
-                console.log('Leyendo estado: ', idProcesos[this.j]);
+                console.log('Leyendo estado: ', idProcesos[j]);
                 estadoProcesos.push(stdout);
               }
-            }.bind(this));
+            };
 
         }
-    }.bind(this));
+    });
 
 
 
