@@ -34,12 +34,28 @@ io.on('connection', function(client) {
     // ,1000);
 
     var contador = 0;
-    setInterval(function(){
+    setInterval(
+          function(){
               contador = aumentar(contador);
               // var resTotales = totales();
-              totales();
+              crearArchivo(
+                //leerArchivo
+                function (cantidad, funCallback){
+                  const readline = require('readline');
+                  const fs = require('fs');
+                  const rl = readline.createInterface({
+                    input: fs.createReadStream('informacion.txt')
+                  });
+
+                  console.log('Primer nivel:', cantidad);
+                  //leo cada linea
+                  rl.on('line', funCallback);
+
+                }
+
+              )
               client.emit('contador', cantidadProcesosG );
-            }
+          }
     ,5000);
 
 });
@@ -52,7 +68,7 @@ function aumentar(cont)
 }
 
 
-function totales()
+function crearArchivo(funLeerArchivo)
 {
   this.cantidadProcesos = 0;
   exec("ls /proc > informacion.txt " ,
@@ -60,29 +76,47 @@ function totales()
     if (error !== null) {
       console.log('exec 1 error: ' + error);
     } else {
-        const readline = require('readline');
-        const fs = require('fs');
-
-        const rl = readline.createInterface({
-          input: fs.createReadStream('informacion.txt')
-        });
-
-        console.log('Primer nivel:', this.cantidadProcesos);
-        //leo cada linea
-        rl.on('line', function (line) {
-          var esnum = isNumber(line)
+      //Llamar a leerArchivo
+      funLeerArchivo(this.cantidadProcesos,
+        //Sumar Procesos
+        function (line) {
+        var esnum = isNumber(line)
+        console.log('Segundo nivel:', this.cantidadProcesos);
+        if(esnum){
+          this.cantidadProcesos ++;
           console.log('Segundo nivel:', this.cantidadProcesos);
-          if(esnum){
-            cantidadProcesos ++;
-
-            //console.log('Linea del archivo:', line);
-          }
-          console.log('Total Procesos', this.cantidadProcesos);
-        }.bind(this));
+        }
+      }.bind(this));
     }
   }.bind(this));
-  cantidadProcesosG = this.cantidadProcesos + 6;
+  cantidadProcesosG = this.cantidadProcesos;
 }
+
+function leerArchivo(cantidad, funCallback){
+  const readline = require('readline');
+  const fs = require('fs');
+  const rl = readline.createInterface({
+    input: fs.createReadStream('informacion.txt')
+  });
+
+  console.log('Primer nivel:', cantidad);
+  //leo cada linea
+  rl.on('line', funCallback);
+
+}
+
+function inter (line) {
+  var esnum = isNumber(line)
+  console.log('Segundo nivel:', this.cantidadProcesos);
+  if(esnum){
+    cantidadProcesos ++;
+  }
+}
+
+function resultTotalProcesos(totalProcesos){
+    console.log('Total Procesos', this.cantidadProcesos);
+}
+
 
 
 function isNumber(n) { return !isNaN(parseFloat(n)) && !isNaN(n - 0) }
