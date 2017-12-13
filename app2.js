@@ -60,7 +60,7 @@ io.on('connection', function(client) {
                     totalEstados();
                     var estados = "";
                     for (i = 0; i < estadoProcesos.length; i++) {
-                      estados += estadoProcesos[i] + " ";
+                      estados += estadoProcesos[i] + "-";
                     }
                     client.emit('contador', estados);
                   }.bind(this))
