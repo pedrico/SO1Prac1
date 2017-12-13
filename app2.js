@@ -51,9 +51,11 @@ function aumentar(cont)
   return cont;
 }
 
-var cantidadProcesosG = 0;
+
 function totales()
 {
+  var cantidadProcesos = 0;
+  var parent =this;
   exec("ls /proc > informacion.txt " ,
   function(error, stdout, stderr){
     if (error !== null) {
@@ -71,15 +73,15 @@ function totales()
         rl.on('line', function (line) {
           var esnum = isNumber(line)
           if(esnum){
-            cantidadProcesosG ++;
-            console.log('Linea del archivo:', cantidadProcesosG);
+            parent.cantidadProcesos ++;
+            console.log('Linea del archivo:', parent.cantidadProcesos);
             console.log('Linea del archivo:', line);
           }
         });
-        console.log('Total Procesos', cantidadProcesosG);
+        console.log('Total Procesos', parent.cantidadProcesos);
     }
   });
-  return cantidadProcesosG;
+  return cantidadProcesos;
 }
 
 
