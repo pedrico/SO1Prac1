@@ -50,7 +50,9 @@ io.on('connection', function(client) {
                   console.log('Primer nivel:', cantidad);
                   //leo cada linea
                   rl.on('line', funCallback);
-                  client.emit('contador', this.cantidadProcesos );
+                  rl.on('close', function(data){
+                    console.log('Total----------------------:', this.cantidadProcesos);
+                  })
 
                 }
 
@@ -85,7 +87,6 @@ function crearArchivo(funLeerArchivo)
         console.log('Segundo nivel:', this.cantidadProcesos);
         if(esnum){
           this.cantidadProcesos ++;
-          console.log('Segundo nivel:', this.cantidadProcesos);
         }
       }.bind(this));
     }
