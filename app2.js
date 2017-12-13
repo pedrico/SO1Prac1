@@ -83,8 +83,7 @@ function crearArchivo(funLeerArchivo)
       funLeerArchivo(this.cantidadProcesos,
         //Sumar Procesos
         function (line) {
-        var esnum = isNumber(line)
-        console.log('Segundo nivel:', this.cantidadProcesos);
+        var esnum = isNumber(line)        
         if(esnum){
           this.cantidadProcesos ++;
         }
