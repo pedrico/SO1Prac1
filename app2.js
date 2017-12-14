@@ -5,7 +5,9 @@ var io = require('socket.io')(server);
 var exec = require('child_process').exec,child, child1;
 var fs=require('fs');
 global.idProcesos = [];
-global.estadoProcesos = [];
+global.ProcesosNombre = [];
+
+
 global.cantidadsuspendidos = 0;
 global.cantidadejecucion = 0;
 global.cantidaddetenidos = 0;
@@ -101,7 +103,7 @@ try {
                       }else if (0 == tercera.trim().localeCompare("Z")) {
                         cantidadzombies ++;
                       }
-                      estadoProcesos.push(segunda);
+                      ProcesosNombre.push(segunda);
 
 
 
@@ -115,19 +117,23 @@ try {
 
 
             }
-            var tabla = `"<table class='table table-hover'>
+            var tabla = `"<table
+            class='table table-hover'>
                                   <thead>
                                   <tr>
                 <th scope='col'>Id</th>
-
+                <th scope='col'>Nombre</th>
+                <th scope='col'>Usuario</th>
+                <th scope='col'>Estado</th>
               </tr>
             </thead>
             <tbody>"`;
             var estados = "";
-            for (i = 0; i < estadoProcesos.length; i++) {
-              tabla += "<tr><td>" + estadoProcesos[i]+"</td></tr>";
+            for (i = 0; i < ProcesosNombre.length; i++) {
+              tabla += "<tr><td>" + ProcesosNombre[i]+"</td></tr>";
 
-              estados += estadoProcesos[i] + "-";
+              estados += ProcesosNombre[i] + "-";
+
             }
 
             tabla += `"  </tbody>
@@ -140,10 +146,10 @@ try {
             // +cantidaddetenidos+"<br/>"+
             // "Procesos Zombies: "
             // +cantidadzombies+"<br/>"+
-            // estadoProcesos.length +" - " + estados + " - ");
+            // ProcesosNombre.length +" - " + estados + " - ");
 
             client.emit('contador', tabla);
-            estadoProcesos=[];
+            ProcesosNombre=[];
             cantidadsuspendidos =0;
             cantidadejecucion= 0;
             cantidaddetenidos = 0;
@@ -168,7 +174,7 @@ try {
   {
     this.cantidadProcesos = 0;
     idProcesos = [];
-    //estadoProcesos= [];
+    //ProcesosNombre= [];
     exec("ls /proc > informacion.txt " ,
     function(error, stdout, stderr){
       if (error !== null) {
