@@ -48,7 +48,7 @@ io.on('connection', function(client) {
   // ,1000);
 
   setInterval(function(){
-    exec("grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage "%"}'" ,
+    exec("grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage \"%\"}'" ,
     function(error, stdout, stderr){
       if (error !== null) {
         console.log('exec 1 error: ' + error);
