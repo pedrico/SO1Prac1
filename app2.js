@@ -67,7 +67,7 @@ io.on('connection', function(client) {
           rl.on('close', function(data){
 
             console.log('Total----------------------:', this.cantidadProcesos);
-            client.emit('contador', this.cantidadProcesos + ' ' +idProcesos.length);
+            //client.emit('contador', this.cantidadProcesos + ' ' +idProcesos.length);
 
             //----------------------------------------------Calculo Estados
             for (j = 0; j < idProcesos.length; j++) {
@@ -94,7 +94,7 @@ try {
                   var segunda = spliteada[1];//nombre
                   var tercera = spliteada[2];//estado
                   var cuarta = spliteada[3];//Usuario
-                  var quinta = spliteada[24];//memoria
+                  var quinta = spliteada[23];//memoria
 
 
 
@@ -131,7 +131,27 @@ try {
 
 
             }
-            var tabla = `<table
+            var Total = cantidadejecucion.length + cantidadsuspendidos.length + cantidaddetenidos.length + cantidadzombies.lenght;
+            var Totales =  ` <div class="row">
+                            <div class="col-sm-3">
+                            Total Procesos: `+ Total +`
+                            </div>
+                            <div class="col-sm-3">
+                            En Ejecución: `+ cantidadejecucion.length +`
+                            </div>
+                            <div class="col-sm-3">
+                            Suspendidos: `+ cantidadsuspendidos.length +`
+                            </div>
+                            <div class="col-sm-3">
+                            Detenidos: `+ cantidaddetenidos.length +`
+                            </div>
+                            <div class="col-sm-3">
+                            Zombies:`+ cantidadejecucion.length +`
+                            </div>
+
+                            `;
+
+            var tabla = Totales + `<table
             class='table table-hover'>
                                   <thead>
                                   <tr>
