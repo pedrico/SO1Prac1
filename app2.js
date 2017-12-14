@@ -159,6 +159,7 @@ io.on('connection', function(client) {
               <th scope='col'>Nombre</th>
               <th scope='col'>Usuario</th>
               <th scope='col'>Estado</th>
+              <th scope='col'>Memoria</th>
               </tr>
               </thead>
               <tbody>`;
@@ -196,7 +197,7 @@ io.on('connection', function(client) {
               ProcesosUsuario=[];
               ProcesosEstado=[];
               ProcesosRam=[];
-              
+
               cantidadsuspendidos =0;
               cantidadejecucion= 0;
               cantidaddetenidos = 0;
