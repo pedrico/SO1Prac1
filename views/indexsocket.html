@@ -14,6 +14,7 @@
   <form id="form" id="chat_form">
     <input id="chat_input" type="text">
     <input type="submit" value="Send">
+    <a href="/index.html">link text</a>
   </form>
   <script src="/jquery/dist/jquery.js"></script>
   <script src="/socket.io/socket.io.js"></script>
@@ -28,7 +29,7 @@
   socket.on('contador', function(data) {
     $('#future').append(data+ "<br/>");
   });
-<a href="/index.html">link text</a>
+
   </body>
   </html>
 </script>
