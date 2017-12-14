@@ -179,7 +179,7 @@ io.on('connection', function(client) {
 
                 `;
 
-                var tabla = Totales + `<div><table
+                var tabla = Totales + `<div class="table-responsive"><table
                 class='table table-hover'>
                 <thead>
                 <tr>
@@ -207,7 +207,7 @@ io.on('connection', function(client) {
                 }
 
                 tabla += `</tbody>
-                </table>`;
+                </table> </div>`;
                 // client.emit('contador', "Procesos Suspendidos: "
                 // +cantidadsuspendidos+"<br/>"+
                 // "Procesos en Ejecución: "
