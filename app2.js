@@ -115,15 +115,14 @@ try {
 
 
             }
-            var tabla = "<table
-            class='table table-hover'>
+            var tabla = `"<table class='table table-hover'>
                                   <thead>
                                   <tr>
                 <th scope='col'>Id</th>
-                
+
               </tr>
             </thead>
-            <tbody>";
+            <tbody>"`;
             var estados = "";
             for (i = 0; i < estadoProcesos.length; i++) {
               tabla += "<tr><td>" + estadoProcesos[i]+"</td></tr>";
@@ -131,8 +130,8 @@ try {
               estados += estadoProcesos[i] + "-";
             }
 
-            tabla += "  </tbody>
-            </table> ";
+            tabla += `"  </tbody>
+            </table> "`;
             // client.emit('contador', "Procesos Suspendidos: "
             // +cantidadsuspendidos+"<br/>"+
             // "Procesos en Ejecución: "
