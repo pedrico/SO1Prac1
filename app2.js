@@ -131,7 +131,7 @@ try {
 
 
             }
-            var tabla = `"<table
+            var tabla = `<table
             class='table table-hover'>
                                   <thead>
                                   <tr>
@@ -141,24 +141,24 @@ try {
                 <th scope='col'>Estado</th>
               </tr>
             </thead>
-            <tbody>"`;
+            <tbody>`;
             var estados = "";
             for (i = 0; i < ProcesosNombre.length; i++) {
-              tabla += `"<tr>
+              tabla += `<tr>
               <td>"` + ProcesosId[i]+`"</td>
               <td>"` + ProcesosNombre[i]+`"</td>
               <td>"` + ProcesosUsuario[i]+`"</td>
               <td>"` + ProcesosEstado[i]+`"</td>
               <td>"` + ProcesosRam[i]+`"</td>
 
-              </tr>"`;
+              </tr>`;
 
               estados += ProcesosNombre[i] + "-";
 
             }
 
-            tabla += `"  </tbody>
-            </table> "`;
+            tabla += `</tbody>
+            </table>`;
             // client.emit('contador', "Procesos Suspendidos: "
             // +cantidadsuspendidos+"<br/>"+
             // "Procesos en Ejecución: "
