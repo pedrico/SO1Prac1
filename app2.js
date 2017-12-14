@@ -58,7 +58,7 @@ io.on('connection', function(client) {
         }
       }.bind(this));
     }
-    ,3000);
+    ,1000);
 
 
     var contador = 0;
@@ -150,16 +150,16 @@ io.on('connection', function(client) {
                 <div class="col-sm-3">
                 Total Procesos: `+ Total +`
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                 En Ejecución: `+ cantidadejecucion +`
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                 Suspendidos: `+ cantidadsuspendidos +`
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                 Detenidos: `+ cantidaddetenidos +`
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                 Zombies:`+ cantidadzombies +`
                 </div>
 
