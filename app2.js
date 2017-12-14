@@ -146,7 +146,7 @@ io.on('connection', function(client) {
               Detenidos: `+ cantidaddetenidos +`
               </div>
               <div class="col-sm-3">
-              Zombies:`+ cantidadejecucion +`
+              Zombies:`+ cantidadzombies +`
               </div>
 
               `;
@@ -191,6 +191,12 @@ io.on('connection', function(client) {
 
               client.emit('contador', tabla);
               ProcesosNombre=[];
+              ProcesosId=[];
+              ProcesosNombre=[];
+              ProcesosUsuario=[];
+              ProcesosEstado=[];
+              ProcesosRam=[];
+              
               cantidadsuspendidos =0;
               cantidadejecucion= 0;
               cantidaddetenidos = 0;
