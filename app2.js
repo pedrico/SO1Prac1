@@ -115,19 +115,35 @@ try {
 
 
             }
+            var tabla = "<table
+            class='table table-hover'>
+                                  <thead>
+                                  <tr>
+                <th scope='col'>Id</th>
+                
+              </tr>
+            </thead>
+            <tbody>";
             var estados = "";
             for (i = 0; i < estadoProcesos.length; i++) {
+              tabla += "<tr><td>" + estadoProcesos[i]+"</td></tr>";
+
               estados += estadoProcesos[i] + "-";
             }
-            client.emit('contador', "Procesos Suspendidos: "
-            +cantidadsuspendidos+"<br/>"+
-            "Procesos en Ejecución: "
-            +cantidadejecucion+"<br/>"+
-            "Procesos Detenidos: "
-            +cantidaddetenidos+"<br/>"+
-            "Procesos Zombies: "
-            +cantidadzombies+"<br/>"+
-            estadoProcesos.length +" - " + estados + " - ");
+
+            tabla += "  </tbody>
+            </table> ";
+            // client.emit('contador', "Procesos Suspendidos: "
+            // +cantidadsuspendidos+"<br/>"+
+            // "Procesos en Ejecución: "
+            // +cantidadejecucion+"<br/>"+
+            // "Procesos Detenidos: "
+            // +cantidaddetenidos+"<br/>"+
+            // "Procesos Zombies: "
+            // +cantidadzombies+"<br/>"+
+            // estadoProcesos.length +" - " + estados + " - ");
+
+            client.emit('contador', tabla);
             estadoProcesos=[];
             cantidadsuspendidos =0;
             cantidadejecucion= 0;
