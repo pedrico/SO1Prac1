@@ -99,7 +99,7 @@ io.on('connection', function(client) {
 
               //----------------------------------------------Calculo Estados
               for (j = 0; j < idProcesos.length; j++) {
-                console.log('Valor j 2: ', j);
+                // console.log('Valor j 2: ', j);
 
                 try {
                   const readline = require('readline');
@@ -110,7 +110,7 @@ io.on('connection', function(client) {
                   (function(varDirectorio){
                     fs.stat(varDirectorio, function(err, stats){
 
-                      console.log('Directorio: ', varDirectorio);
+                      // console.log('Directorio: ', varDirectorio);
                       if(!(err)){
                         const rl = readline.createInterface({
                           input: fs.createReadStream(varDirectorio)
@@ -179,7 +179,7 @@ io.on('connection', function(client) {
 
                 `;
 
-                var tabla = Totales + `<table
+                var tabla = Totales + `<div><table
                 class='table table-hover'>
                 <thead>
                 <tr>
