@@ -94,7 +94,7 @@ io.on('connection', function(client) {
                         var segunda = spliteada[1];//nombre
                         var tercera = spliteada[2];//estado
                         var cuarta = spliteada[3];//Usuario
-                        var quinta = spliteada[23];//memoria
+                        var quinta = spliteada[24];//memoria
 
 
 
