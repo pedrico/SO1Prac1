@@ -60,6 +60,20 @@ io.on('connection', function(client) {
     }
     ,1000);
 
+    setInterval(function(){
+      exec("awk '/MemTotal/ {print $2}' /proc/meminfo" ,
+      function(error, stdout, stderr){
+        if (error !== null) {
+          console.log('exec 1 error: ' + error);
+        } else {
+          var enMegaBytes= (stdout/1024)/1024;
+          var UsoCPU= "<label>Memoria Total:</label><h3>"+ enMegaBytes+ " MB</h3>";
+            client.emit('EstadisticasRam', UsoCPU);
+          }
+        }.bind(this));
+      }
+      ,1000);
+
 
     var contador = 0;
     setInterval(
