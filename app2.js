@@ -5,7 +5,12 @@ var io = require('socket.io')(server);
 var exec = require('child_process').exec,child, child1;
 var fs=require('fs');
 global.idProcesos = [];
+
+global.ProcesosId = [];
 global.ProcesosNombre = [];
+global.ProcesosUsuario = [];
+global.ProcesosEstado = [];
+global.ProcesosRam = [];
 
 
 global.cantidadsuspendidos = 0;
@@ -85,8 +90,12 @@ try {
                   console.log('Directorio: ', varDirectorio);
                 rl.on('line', function(linea){
                   var spliteada = linea.split(" ")
-                  var tercera = spliteada[2];
-                  var segunda = spliteada[1];
+                  var primera = spliteada[0];//id
+                  var segunda = spliteada[1];//nombre
+                  var tercera = spliteada[2];//estado
+                  var cuarta = spliteada[3];//Usuario
+                  var quinta = spliteada[24];//memoria
+
 
 
                       //console.log('Leyendo estado: ', idProcesos[j]);
@@ -103,7 +112,12 @@ try {
                       }else if (0 == tercera.trim().localeCompare("Z")) {
                         cantidadzombies ++;
                       }
+                      ProcesosId.push(primera);
                       ProcesosNombre.push(segunda);
+                      ProcesosUsuario.push(cuarta);
+                      ProcesosEstado.push(tercera);
+                      ProcesosRam.push(quinta);
+
 
 
 
@@ -130,7 +144,14 @@ try {
             <tbody>"`;
             var estados = "";
             for (i = 0; i < ProcesosNombre.length; i++) {
-              tabla += "<tr><td>" + ProcesosNombre[i]+"</td></tr>";
+              tabla += `"<tr>
+              <td>"` + ProcesosId[i]+`"</td>
+              <td>"` + ProcesosNombre[i]+`"</td>
+              <td>"` + ProcesosUsuario[i]+`"</td>
+              <td>"` + ProcesosEstado[i]+`"</td>
+              <td>"` + ProcesosRam[i]+`"</td>
+
+              </tr>"`;
 
               estados += ProcesosNombre[i] + "-";
 
@@ -158,7 +179,7 @@ try {
         }
       )
     }
-    ,3000);
+    ,5000);
 
   });
 
