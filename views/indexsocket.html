@@ -13,6 +13,9 @@
     <h1>Tabla de Procesos</h1>
     <p></p>
   </div>
+  <div id="EstadisticasCPU">
+
+  </div>
   <div id="future"></div>
   <form id="form" id="chat_form">
     <input id="chat_input" type="text">
@@ -30,6 +33,9 @@
   // });
   socket.on('contador', function(data) {
     document.getElementById('future').innerHTML = data;
+  });
+  socket.on('EstadisticasCPU', function(data) {
+    document.getElementById('EstadisticasCPU').innerHTML = data;
   });
   </script>
 <a href="index.html">link text</a>
